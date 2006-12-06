@@ -41,8 +41,6 @@ providing support for webcams and digital cameras based on the spca5xx
 range of chips manufactured by SunPlus Sonix Z-star Vimicro Conexant
 Etoms and Transvision.
 
-This package contains Linux module.
-
 %package -n kernel%{_alt_kernel}-video-%{name}
 Summary:	Linux driver for Philips USB webcams
 Release:	%{_rel}@%{_kernel_ver_str}
