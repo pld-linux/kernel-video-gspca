@@ -11,8 +11,8 @@
 
 %define		_ver 01.00.10
 %define		_rel	0.1
-Summary:	Linux driver for spca5xx
-Summary(pl):	Sterownik dla Linuksa do spca5xx
+Summary:	Linux Generic Software Package for Camera Adapters
+Summary(pl):	Generic Software Package for Camera Adapters - pakiet do obs³ugi kamer pod Linuksem
 Name:		gspca
 Version:	%{_ver}
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -36,13 +36,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define	_module_dir	kernel/drivers/media/video
 
 %description
-This is version %{_ver} of the spca5xx Video for Linux (v4l) driver,
-providing support for webcams and digital cameras based on the spca5xx
-range of chips manufactured by SunPlus Sonix Z-star Vimicro Conexant
-Etoms and Transvision.
+GSPCA is a Linux Generic Software Package for Camera Adapters. It
+supports cameras cameras based on spca5xx, et61xx51, zc030x, sn9c1xx,
+cx11646, tv_8532, pac207, vc032x chips.
+
+%description -l pl
+GSPCA to ogólny pakiet oprogramowania do obs³ugi kamer dla Linuksa.
+Obs³uguje kamery oparte na uk³adach spca5xx, et61xx51, zc030x,
+sn9c1xx, cx11646, tv_8532, pac207, vc032x
 
 %package -n kernel%{_alt_kernel}-video-%{name}
-Summary:	Linux driver for Philips USB webcams
+Summary:	Generic Software Package for Camera Adapters - Linux kernel module
+Summary(pl):	Oprogramowanie do obs³ugi kamer - modu³ j±dra Linuksa
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -51,19 +56,22 @@ Requires(post,postun):	/sbin/depmod
 %endif
 
 %description -n kernel%{_alt_kernel}-video-%{name}
-This is driver for Philips USB webcams for Linux.
+GSPCA is a Linux Generic Software Package for Camera Adapters. It
+supports cameras cameras based on spca5xx, et61xx51, zc030x, sn9c1xx,
+cx11646, tv_8532, pac207, vc032x chips.
 
-This package contains Linux module. File is called
-%{_module_file_name}.
+This package contains Linux kernel module.
 
 %description -n kernel%{_alt_kernel}-video-%{name} -l pl
-Sterownik dla Linuksa do kamer internetowych Philipsa.
+GSPCA to ogólny pakiet oprogramowania do obs³ugi kamer dla Linuksa.
+Obs³uguje kamery oparte na uk³adach spca5xx, et61xx51, zc030x,
+sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 
-Ten pakiet zawiera modu³ j±dra Linuksa. Plik nazywa siê
-%{_module_file_name}.
+Ten pakiet zawiera modu³ j±dra Linuksa.
 
 %package -n kernel%{_alt_kernel}-smp-video-%{name}
-Summary:	Linux SMP driver for spca
+Summary:	Generic Software Package for Camera Adapters - Linux SMP kernel module
+Summary(pl):	Oprogramowanie do obs³ugi kamer - modu³ j±dra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -73,22 +81,16 @@ Requires(postun):	%releq_kernel_smp
 %endif
 
 %description -n kernel%{_alt_kernel}-smp-video-%{name}
-This is version %{_ver} the spca5xx video for linux (v4l) driver,
-providing support for webcams and digital cameras based on the spca5xx
-range of chips manufactured by SunPlus Sonix Z-star Vimicro Conexant
-Etoms and Transvision.
+GSPCA is a Linux Generic Software Package for Camera Adapters. It
+supports cameras cameras based on spca5xx, et61xx51, zc030x, sn9c1xx,
+cx11646, tv_8532, pac207, vc032x chips.
 
-This is driver for spca5xx for Linux.
-
-This package contains Linux SMP module.
+This package contains Linux SMP kernel module.
 
 %description -n kernel%{_alt_kernel}-smp-video-%{name} -l pl
-To jest wersja %{_ver} sterownika Video for Linux (v4l) spca5xx
-dodaj±cego obs³ugê dla kamer i aparatów opartych na uk³adach spca5xx
-produkowanych przez SunPlus Sonix Z-star Vimicro Conexant Etoms and
-Transvision.
-
-Sterownik dla Linuksa do spca5xx.
+GSPCA to ogólny pakiet oprogramowania do obs³ugi kamer dla Linuksa.
+Obs³uguje kamery oparte na uk³adach spca5xx, et61xx51, zc030x,
+sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 
 Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 
