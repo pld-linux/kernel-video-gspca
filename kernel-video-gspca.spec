@@ -12,7 +12,7 @@
 %define		_ver 01.00.10
 %define		_rel	0.1
 Summary:	Linux Generic Software Package for Camera Adapters
-Summary(pl):	Generic Software Package for Camera Adapters - pakiet do obs≥ugi kamer pod Linuksem
+Summary(pl.UTF-8):   Generic Software Package for Camera Adapters - pakiet do obs≈Çugi kamer pod Linuksem
 Name:		gspca
 Version:	%{_ver}
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -40,14 +40,14 @@ GSPCA is a Linux Generic Software Package for Camera Adapters. It
 supports cameras cameras based on spca5xx, et61xx51, zc030x, sn9c1xx,
 cx11646, tv_8532, pac207, vc032x chips.
 
-%description -l pl
-GSPCA to ogÛlny pakiet oprogramowania do obs≥ugi kamer dla Linuksa.
-Obs≥uguje kamery oparte na uk≥adach spca5xx, et61xx51, zc030x,
+%description -l pl.UTF-8
+GSPCA to og√≥lny pakiet oprogramowania do obs≈Çugi kamer dla Linuksa.
+Obs≈Çuguje kamery oparte na uk≈Çadach spca5xx, et61xx51, zc030x,
 sn9c1xx, cx11646, tv_8532, pac207, vc032x
 
 %package -n kernel%{_alt_kernel}-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux kernel module
-Summary(pl):	Oprogramowanie do obs≥ugi kamer - modu≥ j±dra Linuksa
+Summary(pl.UTF-8):   Oprogramowanie do obs≈Çugi kamer - modu≈Ç jƒÖdra Linuksa
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -62,16 +62,16 @@ cx11646, tv_8532, pac207, vc032x chips.
 
 This package contains Linux kernel module.
 
-%description -n kernel%{_alt_kernel}-video-%{name} -l pl
-GSPCA to ogÛlny pakiet oprogramowania do obs≥ugi kamer dla Linuksa.
-Obs≥uguje kamery oparte na uk≥adach spca5xx, et61xx51, zc030x,
+%description -n kernel%{_alt_kernel}-video-%{name} -l pl.UTF-8
+GSPCA to og√≥lny pakiet oprogramowania do obs≈Çugi kamer dla Linuksa.
+Obs≈Çuguje kamery oparte na uk≈Çadach spca5xx, et61xx51, zc030x,
 sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 
-Ten pakiet zawiera modu≥ j±dra Linuksa.
+Ten pakiet zawiera modu≈Ç jƒÖdra Linuksa.
 
 %package -n kernel%{_alt_kernel}-smp-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux SMP kernel module
-Summary(pl):	Oprogramowanie do obs≥ugi kamer - modu≥ j±dra Linuksa SMP
+Summary(pl.UTF-8):   Oprogramowanie do obs≈Çugi kamer - modu≈Ç jƒÖdra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -87,12 +87,12 @@ cx11646, tv_8532, pac207, vc032x chips.
 
 This package contains Linux SMP kernel module.
 
-%description -n kernel%{_alt_kernel}-smp-video-%{name} -l pl
-GSPCA to ogÛlny pakiet oprogramowania do obs≥ugi kamer dla Linuksa.
-Obs≥uguje kamery oparte na uk≥adach spca5xx, et61xx51, zc030x,
+%description -n kernel%{_alt_kernel}-smp-video-%{name} -l pl.UTF-8
+GSPCA to og√≥lny pakiet oprogramowania do obs≈Çugi kamer dla Linuksa.
+Obs≈Çuguje kamery oparte na uk≈Çadach spca5xx, et61xx51, zc030x,
 sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 
-Ten pakiet zawiera modu≥ j±dra Linuksa SMP.
+Ten pakiet zawiera modu≈Ç jƒÖdra Linuksa SMP.
 
 %prep
 %setup -q -n %{name}v1-%{version}
