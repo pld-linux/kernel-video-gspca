@@ -12,7 +12,7 @@
 %define		_ver 01.00.10
 %define		_rel	0.1
 Summary:	Linux Generic Software Package for Camera Adapters
-Summary(pl.UTF-8):   Generic Software Package for Camera Adapters - pakiet do obsługi kamer pod Linuksem
+Summary(pl.UTF-8):	Generic Software Package for Camera Adapters - pakiet do obsługi kamer pod Linuksem
 Name:		gspca
 Version:	%{_ver}
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -47,7 +47,7 @@ sn9c1xx, cx11646, tv_8532, pac207, vc032x
 
 %package -n kernel%{_alt_kernel}-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux kernel module
-Summary(pl.UTF-8):   Oprogramowanie do obsługi kamer - moduł jądra Linuksa
+Summary(pl.UTF-8):	Oprogramowanie do obsługi kamer - moduł jądra Linuksa
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -71,7 +71,7 @@ Ten pakiet zawiera moduł jądra Linuksa.
 
 %package -n kernel%{_alt_kernel}-smp-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux SMP kernel module
-Summary(pl.UTF-8):   Oprogramowanie do obsługi kamer - moduł jądra Linuksa SMP
+Summary(pl.UTF-8):	Oprogramowanie do obsługi kamer - moduł jądra Linuksa SMP
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
