@@ -2,10 +2,11 @@
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
+%bcond_without	up		# don't build UP module
 %bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 
-%if !%{with kernel}
+%if %{without kernel}
 %undefine	with_dist_kernel
 %endif
 
@@ -125,9 +126,11 @@ rm -rf $RPM_BUILD_ROOT
 %depmod %{_kernel_ver}smp
 
 %if %{with kernel}
+%if %{with up} || %{without dist_kernel}
 %files -n kernel%{_alt_kernel}-video-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/%{_module_dir}/gspca.ko*
+%endif
 
 %if %{with smp} && %{with dist_kernel}
 %files -n kernel%{_alt_kernel}-smp-video-%{name}
