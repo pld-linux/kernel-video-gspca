@@ -1,4 +1,9 @@
 #
+# TODO:
+#	- rename thiis to gspcav1 ?
+#	- use the snapshot dates for %{version}? old versioning seems
+#	  discontinued
+#
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
@@ -11,17 +16,18 @@
 %endif
 
 %define		_ver 01.00.10
-%define		_rel	0.1
+%define		_snap 20070110
+%define 	_rel 0.1
 Summary:	Linux Generic Software Package for Camera Adapters
 Summary(pl.UTF-8):	Generic Software Package for Camera Adapters - pakiet do obsługi kamer pod Linuksem
 Name:		gspca
 Version:	%{_ver}
-Release:	%{_rel}@%{_kernel_ver_str}
+Release:	1.%{_snap}.%{_rel}@%{_kernel_ver_str}
 Epoch:		0
 License:	GPL
 Group:		Base/Kernel
-Source0:	http://mxhaard.free.fr/spca50x/Investigation/Gspca/%{name}v1-%{version}.tar.gz
-# Source0-md5:	39e4fb7fe47c2ef489b1f10b3b482253
+Source0:	http://mxhaard.free.fr/spca50x/Download/%{name}v1-%{_snap}.tar.gz
+# Source0-md5:	1e3fa004490a07b7b76de03d70b3e8ea
 URL:		http://mxhaard.free.fr/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.14}
@@ -49,7 +55,7 @@ sn9c1xx, cx11646, tv_8532, pac207, vc032x
 %package -n kernel%{_alt_kernel}-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux kernel module
 Summary(pl.UTF-8):	Oprogramowanie do obsługi kamer - moduł jądra Linuksa
-Release:	%{_rel}@%{_kernel_ver_str}
+Release:	1.%{_snap}.%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
@@ -73,7 +79,7 @@ Ten pakiet zawiera moduł jądra Linuksa.
 %package -n kernel%{_alt_kernel}-smp-video-%{name}
 Summary:	Generic Software Package for Camera Adapters - Linux SMP kernel module
 Summary(pl.UTF-8):	Oprogramowanie do obsługi kamer - moduł jądra Linuksa SMP
-Release:	%{_rel}@%{_kernel_ver_str}
+Release:	1.%{_snap}.%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
@@ -96,7 +102,7 @@ sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 Ten pakiet zawiera moduł jądra Linuksa SMP.
 
 %prep
-%setup -q -n %{name}v1-%{version}
+%setup -q -n %{name}v1-%{_snap}
 
 %build
 %if %{with kernel}
