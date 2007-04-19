@@ -7,8 +7,6 @@
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
-%bcond_without	up		# don't build UP module
-%bcond_without	smp		# don't build SMP module
 %bcond_with	verbose		# verbose build (V=1)
 
 %if %{without kernel}
@@ -35,8 +33,8 @@ BuildRequires:	rpmbuild(macros) >= 1.330
 %endif
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
-%requires_releq_kernel_up
-Requires(postun):	%releq_kernel_up
+%requires_releq_kernel
+Requires(postun):	%releq_kernel
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,7 +57,7 @@ Release:	1.%{_snap}.%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
-%requires_releq_kernel_up
+%requires_releq_kernel
 %endif
 
 %description -n kernel%{_alt_kernel}-video-%{name}
@@ -75,31 +73,6 @@ Obsługuje kamery oparte na układach spca5xx, et61xx51, zc030x,
 sn9c1xx, cx11646, tv_8532, pac207, vc032x.
 
 Ten pakiet zawiera moduł jądra Linuksa.
-
-%package -n kernel%{_alt_kernel}-smp-video-%{name}
-Summary:	Generic Software Package for Camera Adapters - Linux SMP kernel module
-Summary(pl.UTF-8):	Oprogramowanie do obsługi kamer - moduł jądra Linuksa SMP
-Release:	1.%{_snap}.%{_rel}@%{_kernel_ver_str}
-Group:		Base/Kernel
-Requires(post,postun):	/sbin/depmod
-%if %{with dist_kernel}
-%requires_releq_kernel_smp
-Requires(postun):	%releq_kernel_smp
-%endif
-
-%description -n kernel%{_alt_kernel}-smp-video-%{name}
-GSPCA is a Linux Generic Software Package for Camera Adapters. It
-supports cameras cameras based on spca5xx, et61xx51, zc030x, sn9c1xx,
-cx11646, tv_8532, pac207, vc032x chips.
-
-This package contains Linux SMP kernel module.
-
-%description -n kernel%{_alt_kernel}-smp-video-%{name} -l pl.UTF-8
-GSPCA to ogólny pakiet oprogramowania do obsługi kamer dla Linuksa.
-Obsługuje kamery oparte na układach spca5xx, et61xx51, zc030x,
-sn9c1xx, cx11646, tv_8532, pac207, vc032x.
-
-Ten pakiet zawiera moduł jądra Linuksa SMP.
 
 %prep
 %setup -q -n %{name}v1-%{_snap}
@@ -125,22 +98,8 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n kernel%{_alt_kernel}-video-%{name}
 %depmod %{_kernel_ver}
 
-%post	-n kernel%{_alt_kernel}-smp-video-%{name}
-%depmod %{_kernel_ver}smp
-
-%postun	-n kernel%{_alt_kernel}-smp-video-%{name}
-%depmod %{_kernel_ver}smp
-
 %if %{with kernel}
-%if %{with up} || %{without dist_kernel}
 %files -n kernel%{_alt_kernel}-video-%{name}
 %defattr(644,root,root,755)
 /lib/modules/%{_kernel_ver}/%{_module_dir}/gspca.ko*
-%endif
-
-%if %{with smp} && %{with dist_kernel}
-%files -n kernel%{_alt_kernel}-smp-video-%{name}
-%defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}smp/%{_module_dir}/gspca.ko*
-%endif
 %endif
