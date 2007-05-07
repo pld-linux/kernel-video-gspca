@@ -14,7 +14,7 @@
 %endif
 
 %define		_ver 01.00.10
-%define		_snap 20070110
+%define		_snap 20070426
 %define 	_rel 0.1
 Summary:	Linux Generic Software Package for Camera Adapters
 Summary(pl.UTF-8):	Generic Software Package for Camera Adapters - pakiet do obsługi kamer pod Linuksem
@@ -25,7 +25,7 @@ Epoch:		0
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://mxhaard.free.fr/spca50x/Download/%{name}v1-%{_snap}.tar.gz
-# Source0-md5:	1e3fa004490a07b7b76de03d70b3e8ea
+# Source0-md5:	4efcf7b3d596a13f508ad8151bb23e98
 URL:		http://mxhaard.free.fr/
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.14}
