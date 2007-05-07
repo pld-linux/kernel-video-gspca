@@ -28,8 +28,8 @@ Source0:	http://mxhaard.free.fr/spca50x/Download/%{name}v1-%{_snap}.tar.gz
 # Source0-md5:	4efcf7b3d596a13f508ad8151bb23e98
 URL:		http://mxhaard.free.fr/
 %if %{with kernel}
-%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.14}
-BuildRequires:	rpmbuild(macros) >= 1.330
+%{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
+BuildRequires:	rpmbuild(macros) >= 1.379
 %endif
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
