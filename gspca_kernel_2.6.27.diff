@@ -1,0 +1,73 @@
+diff -uarN gspcav1-20071224.orig/gspca.h gspcav1-20071224/gspca.h
+--- gspcav1-20071224.orig/gspca.h	2007-12-24 17:56:47.000000000 +0100
++++ gspcav1-20071224/gspca.h	2008-12-08 14:30:57.000000000 +0100
+@@ -14,6 +14,7 @@
+ #include <linux/version.h>
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,18)
+ #include <media/v4l2-common.h>
++#include <media/v4l2-ioctl.h>
+ #endif
+ /* V4L API extension for raw JPEG (=JPEG without header) and JPEG with header   
+ */
+diff -uarN gspcav1-20071224.orig/gspca_core.c gspcav1-20071224/gspca_core.c
+--- gspcav1-20071224.orig/gspca_core.c	2007-12-24 17:56:47.000000000 +0100
++++ gspcav1-20071224/gspca_core.c	2008-12-08 14:30:57.000000000 +0100
+@@ -51,7 +51,7 @@
+ #include <linux/pagemap.h>
+ #include <linux/usb.h>
+ #include <asm/io.h>
+-#include <asm/semaphore.h>
++#include <linux/semaphore.h>
+ #include <asm/page.h>
+ #include <asm/uaccess.h>
+ #include <asm/atomic.h>
+@@ -2606,9 +2606,9 @@
+ 	.llseek = no_llseek,
+ };
+ static struct video_device spca50x_template = {
+-	.owner = THIS_MODULE,
++      //.owner = THIS_MODULE,
+ 	.name = "GSPCA USB Camera",
+-	.type = VID_TYPE_CAPTURE,
++      .vfl_type = VID_TYPE_CAPTURE,
+ #if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,23)	
+ 	.hardware = VID_HARDWARE_GSPCA,
+ #endif
+@@ -2766,22 +2766,22 @@
+ spca50x_create_sysfs(struct video_device *vdev)
+ {
+ 	int rc = 0;
+-	rc = video_device_create_file(vdev, &dev_attr_stream_id);
++      rc = device_create_file(&vdev->dev, &dev_attr_stream_id);
+ 	if (rc)
+ 		goto err_stream_id;
+-	rc = video_device_create_file(vdev, &dev_attr_model);
++      rc = device_create_file(&vdev->dev, &dev_attr_model);
+ 	if (rc)
+ 		goto err_model;
+-	rc = video_device_create_file(vdev, &dev_attr_pictsetting);
++      rc = device_create_file(&vdev->dev, &dev_attr_pictsetting);
+ 	if (rc)
+ 		goto err_pictsetting;
+ 	return 0;
+       err_pictsetting:
+-	video_device_remove_file(vdev, &dev_attr_pictsetting);
++      device_remove_file(&vdev->dev, &dev_attr_pictsetting);
+       err_model:
+-	video_device_remove_file(vdev, &dev_attr_model);
++      device_remove_file(&vdev->dev, &dev_attr_model);
+       err_stream_id:
+-	video_device_remove_file(vdev, &dev_attr_stream_id);
++      device_remove_file(&vdev->dev, &dev_attr_stream_id);
+ 	return rc;
+ }
+ #endif 
+@@ -4298,7 +4298,7 @@
+ 	if (!spca50x->vdev)
+ 		goto error;
+ 	memcpy(spca50x->vdev, &spca50x_template, sizeof (spca50x_template));
+-	spca50x->vdev->dev = &dev->dev;
++    spca50x->vdev->dev = dev->dev;
+ 	video_set_drvdata(spca50x->vdev, spca50x);
+ 	PDEBUG(2, "setting video device = %p, spca50x = %p", spca50x->vdev,
+ 	       spca50x);
