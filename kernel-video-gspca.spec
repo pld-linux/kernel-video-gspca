@@ -1,3 +1,5 @@
+# NOTE:
+# - included in mainline kernel as kernel/drivers/media/video/gspca/*
 #
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
