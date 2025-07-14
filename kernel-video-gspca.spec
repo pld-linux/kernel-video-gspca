@@ -49,8 +49,8 @@ sn9c1xx, cx11646, tv_8532, pac207, vc032x
 
 %prep
 %setup -q -n %{pname}v1-%{version}
-%patch0 -p1
-%patch1 -p0
+%patch -P0 -p1
+%patch -P1 -p0
 
 %build
 %if %{with kernel}
